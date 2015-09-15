@@ -1,0 +1,10 @@
+
+*.xcscheme
+
+*.xcuserstate
+
+*.xccheckout
+
+*.pbxproj
+
+*.xcworkspacedata
