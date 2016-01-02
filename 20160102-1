@@ -1,0 +1,15 @@
+//在方法中分配和返回对象
+前面所实现的办法是在main函数里面分配分数相加后的结果答案，
+然后调用相应的实例方法和输出函数来实现输出
+现在可以在add:方法里面创建一个新的分数来存储相加的结果 然后向消息的发送者返回的是一个新的Fraction
+-(Fraction *) add: (Fraction *)f {
+    Fraction *result = [[Fraction alloc] init];
+
+    result.numerator = numerator * f.denominator + denominator * f.numerator;
+
+    result.denominator = denominator * f.denominator;
+
+    [result reduce];
+
+    return result;
+}
