@@ -1,0 +1,71 @@
+//8.2通过继承来扩展：添加新方法
+@interface Rectangle: NSObject
+
+@property int width, height;
+-(int) area;
+-(int) perimeter;
+@end
+
+-(void) setWidth: (int) w andHeight: (int) h;
+
+
+
+#import "Rectangle.h"
+
+@implementation Rectangle
+
+@synthesize width, height;
+
+-(void) setWidth: (int) w andHeight: (int) h {
+    width = w;
+    height = h;
+}
+
+-(int) area {
+    return width * height;
+}
+
+-(int) perimeter {
+    return (width + height) * 2;
+}
+@end
+
+
+#import "Rectangle.h"
+
+int main(int argc, char *argv[]) {
+    @autoreleasepool {
+        Rectangle *myRect = [[Rectangle alloc] init];
+
+        [myRect setWidth: 5 andHeight: 8];
+
+        NSLog(@"Rectangle: w = %i, h = %i", myRect.width, myRect.height);
+        NSLog(@"Area = %i, Perimeter = %i", [myRect area], [myRect perimeter]);
+    }
+    return 0;
+}
+
+
+
+#import "Rectangle.h"
+
+@interface Square: Rectangle
+
+-(void) setSide: (int) s;
+-(int) side;
+@end
+
+
+#import "Square.h"
+
+@implementation Square: Rectangle
+
+-(void) setSide: (int) s {
+    [self setWidth: s andHeight: s];
+}
+
+-(int) side {
+    return self.width;
+}
+
+@end
