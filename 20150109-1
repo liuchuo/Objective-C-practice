@@ -1,0 +1,85 @@
+//抽象类的概念
+就是有时候创建的类只是为了更容易创建子类 因此这些类名为抽象类 或者叫做抽象超类
+
+
+
+//多态、动态类型和动态绑定
+多态能够使来自不同类的对象定义相同名称的方法(使用不同的类共享相同方法名称的能力称为多态)
+动态类型能使程序直到执行的时候才确定对象所属的类
+动态绑定能够让程序直到执行的时候才确定实际要调用的对象方法
+
+%g是double或者float型的NSLog字符，也可以用%f、%e、%a
+
+#import <Foundation/Foundation.h>
+
+@interface Complex: NSObject
+
+@property double real, imaginary;
+-(void) print;
+-(void) setReal: (double) a andImaginary: (double) b;
+-(Complex *) add: (Complex *) f;
+@end
+
+
+
+#import "Complex.h"
+
+@implementation Complex
+
+@synthesize real, imaginary;
+
+-(void) print {
+    NSLog (@" %g + %gi", real, imaginary);
+}
+
+-(void) setReal: (double) a and imaginary: (double) b {
+    real = a;
+    imaginary = b;
+}
+
+-(Complex *) add: (Complex *) f {
+    Complex *result = [[Complex alloc] init];
+    result.real = real + f.real;
+    result.imaginary = imaginary + f.imaginary;
+
+    return result;
+}
+@end
+
+
+#import "Fraction,h"
+#import "Complex.h"
+
+int main(int argc, char *argv[]) {
+    @autoreleasepool {
+        Fraction *f1 = [[Fraction alloc] init];
+        Fraction *f2 - [[Fraction alloc] init];
+        Fraction *fracResult;
+
+        Complex *c1 = [[Complex alloc] init];
+        Complex *c2 = [[Complex alloc] init];
+        Complex *compResult;
+
+        [f1 setTo: 1 over 10];
+        [f2 setTo: 2 over 15];
+
+        [c1 setReal: 18.0 andImaginary: 2.5];
+        [c2 setReal: -5.0 andImaginary: 3.2];
+
+        [c1 print];
+        NSLog(@"      +");
+        [c2 print];
+        NSLog(@"--------");
+        compResult = [c1 add: c2];
+        [compResult print];
+        NSLog(@"\n");
+
+        [f1 print];
+        NSLog(@"       +");
+        [f2 print]
+        NSLog(@"----------");
+        fracResult = [f1 add: f2];
+        [fracResult print];
+    }
+    return 0;
+}
