@@ -1,0 +1,14 @@
+//枚举数据类型
+enum flag {false, true};
+enum direction {up, down, left = 10, right};
+编译器依次给它赋值 0, 1, 10, 11
+枚举标识符可以共享相同的值：
+enum boolean{no = 0, false = 0, yes = 1, true = 1};
+
+编译器事实上将枚举标识符作为整型常量来处理
+enum month thisMonth;
+thisMonth = february;
+事实上给thisMonth赋的值是整数2（而不是february这个名字）
+
+定义一个枚举类型的同事还声明一个该类型的变量：
+enum{east, west, south, north} direction;
