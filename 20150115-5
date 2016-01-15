@@ -1,0 +1,8 @@
+//作用域回顾
+全局变量：int gMoveNumber = 0;
+外部变量：extern int gMoveNumber;(告诉系统自己要访问其他文件中的全局变量)
+这样写不好，会出现警告信息：extern int gMoveNumber = 0;因为extern表明这条语句是变量的声明而不是定义
+声明不会引起变量存储空间的分配，而定义会引起变量存储空间的分配
+
+静态变量：static int gGlobalVar = 0;
+声明在任何方法或者函数之外，在该文件中可以访问它的值，但在其他文件中的方法和函数则不行
