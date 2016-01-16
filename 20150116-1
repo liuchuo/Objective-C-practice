@@ -1,0 +1,98 @@
+//第十一章 分类和协议
+如何通过分类（category）以模块的形式向类添加方法，
+以及如何创建标准化的方法列表提供给他人实现
+//11.1 分类
+分类提供了一种简单的方式，用它可以将类的定义模块化到相关方法的组或分类中
+它还提供了扩展现有类定义的简便方式，而且不必访问类的源代码，也无须创建子类，分类是一个功能强大且简单的概念
+#import "Fraction.h"
+
+@interface Fraction (MathOps)
+-(Fraction *) add: (Fraction *) f;
+-(Fraction *) mul: (Fraction *) f;
+-(Fraction *) sub: (Fraction *) f;
+-(Fraction *) div: (Fraction *) f;
+@end
+
+@implementation Fraction (MathOps)
+-(Fraction *) add: (Fraction *) f {
+    //a/b + c/d = ((a * d) + (b * c)) / (b * d)
+
+    Fraction *result = [[Fraction alloc] init];
+
+    result.numerator = (numerator * f.denominator) + 
+        (denominator * f.numerator);
+    result.denominator = denominator * f.denominator;
+    [result reduce];
+
+    return result;
+}
+
+-(Fraction *) sub: (Fraction *) f {
+    // a/b - c/d = ((a * d) - (b * c)) / (b * d)
+    Fraction *result = [[Fraction alloc] init];
+
+    result.numerator = (numerator * f.denominator) -
+        (denominator * f.numerator);
+    result.denominator = denominator * f.denominator;
+    [result reduce];
+
+    return result;
+}
+
+-(Fraction *) mul: (Fraction *) f {
+    Fraction *result = [[Fraction alloc] init];
+
+    result.numerator = numerator * f.numerator;
+    result.denominator = denominator * f.denominator;
+    [result reduce];
+
+    return result;
+}
+
+-(Fraction *) div: (Fraction *) f {
+    Fraction *result = [[Fraction alloc] init];
+
+    result.numerator = numerator * f.denominator;
+    result.denominator = denominator * f.numerator;
+    [result reduce];
+
+    return result;
+}
+@end
+
+
+int main(int argc, char *argv[]) {
+    @autoreleasepool {
+        Fraction *a = [[Fraction alloc] init];
+        Fraction *b = [[Fraction alloc] init];
+        Fraction *result;
+
+        [a setTo: 1 over: 3];
+        [b setTo: 2 over: 5];
+
+        [a print];
+        NSLog(@"  +");
+        result = [a add: b];
+        [result print];
+        NSLog(@"\n");
+
+        [a print];
+        NSLog(@"  -");
+        result = [a sub: b];
+        [result print];
+        NSLog(@"\n");
+
+        [a print];
+        NSLog(@"  x");
+        result = [a mul: b];
+        [result print];
+        NSLog(@"\n");
+
+        [a print];
+        NSLog(@"  /");
+        result = [a div: b];
+        [result print];
+        NSLog(@"\n");
+    }
+    return 0;
+}
