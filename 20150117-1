@@ -1,0 +1,27 @@
+#import 语句
+#import "xxx.h"
+#import <Foundation/Foundation.h>
+
+
+
+
+//条件编译
+#ifdef IPAD
+#  define kImageFile @"barnHD.png"
+#else
+#  define kImageFile @"barn.png"
+#endif
+
+
+#if defined (DEBUG)
+    ...
+#endif
+和
+#ifdef DEBUG
+...
+#endif
+
+
+#undef name
+
+#undef IPAD
